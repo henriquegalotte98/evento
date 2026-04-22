@@ -26,8 +26,8 @@ public class Evento {
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
 
-    @Size(max = 100, message = "O local do evento deve ter no máximo 100 caracteres.")
     @NotNull(message = "O local do evento é obrigatória")
+    @Size(max = 100, message = "O local do evento deve ter no máximo 100 caracteres.")
     @Column(name = "local", nullable = false)
     private String local;
 
@@ -41,11 +41,11 @@ public class Evento {
     @Column(name = "descricao", nullable = false, length = 255)
     private String descricao;
 
-    public Evento(){
-        
+    public Evento() {
+
     }
 
-    public Evento(Long id, String nome, String local, LocalDate data, String descricao){
+    public Evento(Long id, String nome, String local, LocalDate data, String descricao) {
         this.id = id;
         this.nome = nome;
         this.local = local;
