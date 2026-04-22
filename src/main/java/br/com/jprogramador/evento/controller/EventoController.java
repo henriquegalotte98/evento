@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jprogramador.evento.entity.Evento;
 import br.com.jprogramador.evento.service.EventoService;
+import br.com.jprogramador.evento.dto.MensagemResponse;
 import jakarta.validation.Valid;
 
 
@@ -30,9 +31,9 @@ public class EventoController {
     }
 
     @PostMapping
-    public ResponseEntity<List<Evento>> listarTodos(){
-        List<Evento> eventos = eventoService.listarTodos();
-        return ResponseEntity.ok(eventos);
+    public ResponseEntity<Evento> criar(@Valid @RequestBody Evento evento){
+        Evento eventoSalvo = eventoService.salvar(evento);
+        return ResponseEntity.ok(eventoSalvo);
     }
     @GetMapping
     public ResponseEntity<List<Evento>> listarTodos(){
@@ -44,7 +45,7 @@ public class EventoController {
         Evento eventoAtualizado = eventoService.atualizar(id,evento);
         return ResponseEntity.ok(eventoAtualizado);
     }
-    @DeleteMapping("/{id")
+    @DeleteMapping("/{id}")
     public ResponseEntity<MensagemResponse> deletar(@PathVariable Long id){
         eventoService.deletar(id);
         return ResponseEntity.ok(new MensagemResponse("Evento removido com sucesso"));
